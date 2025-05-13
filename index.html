@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Datos de Distancia</title>
+</head>
+<body>
+  <h1>Datos de Distancia Medidos</h1>
+  <table id="data-table" border="1">
+    <thead>
+      <tr><th>Fecha y Hora</th><th>Timestamp</th><th>Distancia (cm)</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    async function loadCSV() {
+      const response = await fetch('distance_data.csv');
+      const data = await response.text();
+      const rows = data.trim().split('\n');
+      const tbody = document.querySelector('#data-table tbody');
+      rows.forEach(row => {
+        const cols = row.split(',');
+        const tr = document.createElement('tr');
+        cols.forEach(col => {
+          const td = document.createElement('td');
+          td.textContent = col;
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+    }
+    loadCSV();
+  </script>
+</body>
+</html>
