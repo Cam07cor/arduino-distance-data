@@ -1,0 +1,11 @@
+name: Distance Data Upload
+on:
+  push:
+    branches: [ main ]
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Python script
+        run: python data_logger.py  # Reemplaza con tu script
